@@ -1,0 +1,8 @@
+
+*.o
+nbody01
+
+# ccls, clangd
+.cache/
+compile_commands.json
+
