@@ -11,7 +11,7 @@ class world;
 class body {
 public:
 
-    body(float radius, double mass, Color color) : radius(radius), mass(mass), color(color) {} 
+    body(const char *name, float radius, double mass, Color color) : radius(radius), mass(mass), color(color), name(name) {} 
 
     void update(world &W);
     void render();
@@ -29,6 +29,7 @@ private:
     Color color;
     double mass;
     uint64_t id;
+    const char *name;
 };
 
 }

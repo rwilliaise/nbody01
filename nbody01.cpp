@@ -20,16 +20,16 @@ const char *perspective_names[] = {
 
 int main(int argc, char *argv[]) {
     // SetConfigFlags(FLAG_MSAA_4X_HINT);
-    InitWindow(1024, 1024, "");
+    InitWindow(1024, 1024, "nbody01");
 
     world world;
 
     {
-        body sun(SUN_RADIUS, SUN_MASS, YELLOW);
-        body mercury(MERCURY_RADIUS * 50, MERCURY_MASS, GRAY);
-        body venus(VENUS_RADIUS, VENUS_MASS, BROWN);
-        body earth(EARTH_RADIUS, EARTH_MASS, BLUE);
-        body moon(MOON_RADIUS, MOON_MASS, WHITE);
+        body sun("sun", SUN_RADIUS, SUN_MASS, YELLOW);
+        body mercury("mercury", MERCURY_RADIUS * 250, MERCURY_MASS, GRAY);
+        body venus("venus", VENUS_RADIUS, VENUS_MASS, BROWN);
+        body earth("earth", EARTH_RADIUS, EARTH_MASS, BLUE);
+        body moon("moon", MOON_RADIUS, MOON_MASS, WHITE);
         mercury.encircle(sun, MERCURY_DIST);
         venus.encircle(sun, VENUS_DIST);
         earth.encircle(sun, EARTH_DIST);

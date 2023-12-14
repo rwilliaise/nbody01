@@ -40,7 +40,8 @@ void body::encircle(body &other, double dist) {
     double w = std::sqrt(a / dist);
     double T = (2 * M_PI) / w;
 
-    printf("expected period: %f s\n", T);
+    printf("expected %s period: %f s\n", name, T);
+    printf("expected %s velocity: %f m/s\n", name, v);
 }
 
 }
