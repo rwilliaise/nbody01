@@ -1,4 +1,5 @@
 
+#include <cstdio>
 #include <raylib.h>
 
 #include "globals.h"
@@ -13,12 +14,19 @@ int main(int argc, char *argv[]) {
     world world;
 
     {
+        body sun(SUN_RADIUS, SUN_MASS, YELLOW);
         body earth(EARTH_RADIUS, EARTH_MASS, BLUE);
         body moon(MOON_RADIUS, MOON_MASS, WHITE);
+        earth.encircle(sun, EARTH_DIST);
         moon.encircle(earth, MOON_DIST);
+
+        world.push(std::move(sun));
         world.push(std::move(earth));
         world.push(std::move(moon));
     }
+    
+    body *sun = world.from_id(0);
+    body *earth = world.from_id(1);
 
     while (!WindowShouldClose()) {
         world.update();
@@ -26,13 +34,17 @@ int main(int argc, char *argv[]) {
         BeginDrawing();
             ClearBackground(BLACK);
 
+            DrawGrid(100, SUN_RADIUS * RENDER_SCALE);
+
+            vec3 diff = (earth->pos - sun->pos).normalized();
+
             BeginMode3D((Camera3D) {
-                .position = (Vector3) { 0, 20, 1 },
+                .position = (earth->pos * RENDER_SCALE + diff * 2 + vec3 { 0, 1, 0 }).convert(),
                 // .target = vec_convert(vec_muls(world.bodies[1].pos, R_SCALE)),
                 .target = (Vector3) { 0, 0, 0 },
                 .up = (Vector3) { 0, 1, 0 },
                 .fovy = 90,
-                .projection = CAMERA_ORTHOGRAPHIC,
+                .projection = CAMERA_PERSPECTIVE,
             });
 
             world.render();

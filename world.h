@@ -17,6 +17,15 @@ public:
         bodies.push_back(b);
     }
 
+    inline body *from_id(uint64_t id) {
+        for (int i = 0; i < bodies.size(); i++) {
+            body *b = &bodies[i];
+            if (b->id == id) return b;
+        }
+
+        return nullptr;
+    }
+
     double delta;
 
 private:

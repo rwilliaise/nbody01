@@ -19,9 +19,8 @@ public:
     // start circular orbit around this body
     void encircle(body &other, double dist);
 
-    inline void set_pos(vec3 new_pos) {
-        pos = new_pos;
-    }
+    vec3 pos { 0, 0, 0 };
+    vec3 vel { 0, 0, 0 };
 
 private:
     friend class world;
@@ -30,8 +29,6 @@ private:
     Color color;
     double mass;
     uint64_t id;
-    vec3 pos { 0, 0, 0 };
-    vec3 vel { 0, 0, 0 };
 };
 
 }
