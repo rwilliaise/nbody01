@@ -4,6 +4,7 @@
 #include "world.h"
 #include <cmath>
 #include <cstdio>
+#include <raylib.h>
 
 #define dbgf(A) printf(#A ": %f\n", A);
 
@@ -26,6 +27,7 @@ void body::update(world &W) {
 void body::render() {
     vec3 render_pos = pos * RENDER_SCALE;
     DrawSphere(render_pos.convert(), radius * RENDER_SCALE, color);
+    // DrawPoint3D(render_pos.convert(), color);
 }
 
 void body::encircle(body &other, double dist) {
